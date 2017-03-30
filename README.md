@@ -6,11 +6,14 @@ The homework to show my ability
 2. Development environment :<br>
    Computer OS -> window 7.
    <br>   
-   IDE -> Undetermined.
+   IDE -> Eclipse.
    <br>
-   Open source used -> Undetermined.
+   Open source used -> LazyList.
+   https://github.com/thest1/LazyList
+  
    <br>
    
 3. Retrospective review<br>
    revision -> 1.1.1 : Create Project
+   revision -> 1.2.1 : Project file upload
    
