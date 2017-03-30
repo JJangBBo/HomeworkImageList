@@ -14,6 +14,6 @@ The homework to show my ability
    <br>
    
 3. Retrospective review<br>
-   revision -> 1.1.1 : Create Project
+   revision -> 1.1.1 : Create Project<br>
    revision -> 1.2.1 : Project file upload
    
