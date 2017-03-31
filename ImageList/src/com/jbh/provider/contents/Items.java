@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Items implements Serializable{
 	
-	private static final long serialVersionUID = -341718435931314040L;
+	private static final long serialVersionUID = 4220461820168818967L; 
 	public static final String TAG_ID       =  "id";       //이미지 id      
 	public static final String TAG_IMAGES    =  "images";     //이미지 JSONArray
 	public static final String TAG_STANARD_RESOLUTION    =  "standard_resolution";     //

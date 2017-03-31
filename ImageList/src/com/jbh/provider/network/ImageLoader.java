@@ -14,24 +14,25 @@ import java.util.concurrent.Executors;
 
 import com.jbh.imagelist.R;
 import com.jbh.util.MemoryCache;
+import com.jbh.util.ScalableImageView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
-import android.widget.ImageView;
+
  
 public class ImageLoader {
      
     // Initialize MemoryCache
-    MemoryCache memoryCache = new MemoryCache();
+    MemoryCache memoryCache = MemoryCache.getInstance();
      
     //FileCache fileCache;
      
     //Create Map (collection) to store image and image url in key value pair
-    private Map<ImageView, String> imageViews = Collections.synchronizedMap(
-                                           new WeakHashMap<ImageView, String>());
+    private Map<ScalableImageView, String> imageViews = Collections.synchronizedMap(
+                                           new WeakHashMap<ScalableImageView, String>());
     ExecutorService executorService;
      
     //handler to display images in UI thread
@@ -50,7 +51,7 @@ public class ImageLoader {
     // default image show in list (Before online image download)
     final int stub_id=R.drawable.bt_close_normal;
      
-    public void DisplayImage(String url, ImageView imageView)
+    public void DisplayImage(String url, ScalableImageView imageView)
     {
         //Store image and url in Map
         imageViews.put(imageView, url);
@@ -61,8 +62,9 @@ public class ImageLoader {
         if(bitmap!=null){
             // if image is stored in MemoryCache Map then
             // Show image in listview row
-        	imageView.setBackgroundDrawable(new BitmapDrawable(bitmap));
+//        	imageView.setBackgroundDrawable(new BitmapDrawable(bitmap));
 
+        	imageView.setImageBitmap(bitmap);
         }
         else
         {
@@ -74,7 +76,7 @@ public class ImageLoader {
         }
     }
          
-    private void queuePhoto(String url, ImageView imageView)
+    private void queuePhoto(String url, ScalableImageView imageView)
     {
         // Store image and url in PhotoToLoad object
     	
@@ -91,8 +93,8 @@ public class ImageLoader {
     private class PhotoToLoad
     {
         public String url;
-        public ImageView imageView;
-        public PhotoToLoad(String u, ImageView i){
+        public ScalableImageView imageView;
+        public PhotoToLoad(String u, ScalableImageView i){
             url=u; 
             imageView=i;
         }
@@ -198,7 +200,7 @@ public class ImageLoader {
              
             // Show bitmap on UI
             if(bitmap!=null)
-                photoToLoad.imageView.setBackgroundDrawable(new BitmapDrawable(bitmap));
+            	photoToLoad.imageView.setImageBitmap(bitmap);
             else
             {
             	photoToLoad.imageView.setImageResource(stub_id);

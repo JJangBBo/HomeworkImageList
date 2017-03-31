@@ -5,6 +5,7 @@ import java.util.List;
 import com.jbh.imagelist.R;
 import com.jbh.provider.contents.Items;
 import com.jbh.provider.network.ImageLoader;
+import com.jbh.util.ScalableImageView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,14 +17,14 @@ import android.widget.ImageView;
 
 public class ImageListAdapter extends ArrayAdapter<Items> {
     private Context mContext = null;
-    private List<Items> ResourceMap= null;
+    private List<Items> mResourceMap= null;
     LayoutInflater mInflater= null;
     private int mLayout = 0;
     public ImageLoader imageLoader= null;
 
     public ImageListAdapter(Context context, int itemResourceID, List<Items> resourceMap) {
         super(context, itemResourceID, resourceMap);
-        this.ResourceMap = resourceMap;
+        this.mResourceMap = resourceMap;
         this.mContext = context;
         this.mLayout = itemResourceID;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -33,7 +34,7 @@ public class ImageListAdapter extends ArrayAdapter<Items> {
     
 	public void setAppendList(List<Items> resourceMap){
 		
-		this.ResourceMap = resourceMap;
+		this.mResourceMap = resourceMap;
 	}
     
 	public void setClearCache()
@@ -53,12 +54,12 @@ public class ImageListAdapter extends ArrayAdapter<Items> {
    
     @Override
     public int getCount() {
-        return ResourceMap.size();
+        return mResourceMap.size();
     }
 
     @Override
     public Items getItem(int position) {
-        return ResourceMap.get(position);
+        return mResourceMap.get(position);
     }
 
     @Override
@@ -72,23 +73,20 @@ public class ImageListAdapter extends ArrayAdapter<Items> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final Items listitem = ResourceMap.get(position);
+        final Items listitem = mResourceMap.get(position);
         PersonViewHolder viewHolder;
         // 캐시된 뷰가 없을 경우 새로 생성하고 뷰홀더를 생성한다
         try {
             if (convertView == null) {
                 convertView = mInflater.inflate(mLayout, parent, false);
                 viewHolder = new PersonViewHolder();
-                viewHolder.uerimageview = (ImageView)convertView.findViewById(R.id.img_viewr);
+                viewHolder.uerimageview = (ScalableImageView)convertView.findViewById(R.id.img_viewr);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (PersonViewHolder) convertView.getTag();
             }
 
-            viewHolder.uerimageview.getLayoutParams().height = getDip(Integer.parseInt(listitem.getImageHeight().toString()));
-            
-            viewHolder.uerimageview.requestLayout();
-            ImageView image = viewHolder.uerimageview;
+            ScalableImageView image = viewHolder.uerimageview;
             
             //DisplayImage function from ImageLoader Class
             imageLoader.DisplayImage(listitem.getUrl().toString(), image);
@@ -103,12 +101,9 @@ public class ImageListAdapter extends ArrayAdapter<Items> {
 
 	public class PersonViewHolder 
 	{
-		public ImageView uerimageview;
+		public ScalableImageView uerimageview;
 	}
 
 	
-	private int getDip(int pixel)
-	{
-		return (int) (pixel * mContext.getResources().getDisplayMetrics().density + 0.5f);
-	}
+
 }

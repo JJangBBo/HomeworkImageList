@@ -3,14 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
-    <ImageView
+    <com.jbh.util.ScalableImageView
         android:id="@+id/img_viewr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="5dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="5dip" >
-    </ImageView>
+        android:layout_marginTop="5dip"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
 
 </RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <com.jbh.util.ScalableImageView
+        android:id="@+id/pager_item_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:id="@+id/pager_item_close_btn"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="20dip" >
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bt_close_normal" />
+    </RelativeLayout>
+
+</RelativeLayout>

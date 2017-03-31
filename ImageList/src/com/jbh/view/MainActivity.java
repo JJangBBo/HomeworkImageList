@@ -11,11 +11,14 @@ import com.jbh.provider.network.ServerConnection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +28,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity { 
 	
-	List<Items> mImageList = new ArrayList<Items>();;
+	ArrayList<Items> mImageList = new ArrayList<Items>();
 	/** 리스트뷰 어댑터  */
     ImageListAdapter mListAdapter = null;
     /** 결과 리스트뷰 */
@@ -61,6 +64,25 @@ public class MainActivity extends Activity {
         	mListview.setAdapter(mListAdapter);
         	mListview.setOnScrollListener(mOnScrollListener);
         	mListview.setCacheColorHint(0);	
+        	mListview.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+					// TODO Auto-generated method stub
+	        		Intent intent = new Intent(getApplicationContext(), ImageDetailActivity.class);
+	    			intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("RESOURCEMAP",mImageList);
+					intent.putExtras(bundle);
+					intent.putExtra("RESOURCEMAP_POSITION", position);
+					intent.putExtra("MORE_FLAG", bMoreAvailableFlag);
+					intent.putExtra("SEARCH_ID", mSearchIDString);
+					
+	    			overridePendingTransition(0,0);
+	    			startActivity(intent); 
+				}
+			});
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -97,7 +119,7 @@ public class MainActivity extends Activity {
             		{
             			mListAdapter.setClearCache();
             		}
-            		
+            		mSearchIDString = mSearchIDString.trim();
             		mImageList.clear();
             		hideKeyboard();
             		getItemSearch(mSearchIDString,"0");	
@@ -112,12 +134,7 @@ public class MainActivity extends Activity {
         }
     };
     
-    /**
-     * 회원 목록 조회 서버페이지 콜
-     * 
-     * @author lovelifetree
-     * 
-     */
+
     private class GetItemProcess extends AsyncTask<String, Void, QueryImageItemResult> {
         String searchId = null;
         String itemId = null;
@@ -156,22 +173,24 @@ public class MainActivity extends Activity {
         protected void onPostExecute(QueryImageItemResult result) {
             super.onPostExecute(result);
             
-            if (result.getStatus().equals("ok")) 
+            if(result != null)
             {
-            	mLoadingFlag = false;
-            	if(result.getItemsList().size() > 0 )
-            	{
-            		bMoreAvailableFlag = result.getMoreAvailable().equals("true")? true : false;
-            		mImageList.addAll(result.getItemsList());
-                    setListView();
-            	}
-            	else
-            	{
-            		showToastMake("검색된 결과가 없습니다.");
-            	}
-                
-                
+            	 if (result.getStatus().equals("ok")) 
+                 {
+                 	mLoadingFlag = false;
+                 	if(result.getItemsList().size() > 0 )
+                 	{
+                 		bMoreAvailableFlag = result.getMoreAvailable().toString().equals("true")? true : false;
+                 		mImageList.addAll(result.getItemsList());
+                 		showListView();
+                 	}
+                 	else
+                 	{
+                 		showToastMake("검색된 결과가 없습니다.");
+                 	}
+                 }
             }
+           
             
         }
     }
@@ -184,7 +203,7 @@ public class MainActivity extends Activity {
      * @param result
      *            서버에서 넘어온 데이터
      */
-    private void setListView() {
+    private void showListView() {
 //    	mImageList = result.getItemsList();
     	if(mListAdapter != null)
     	{
@@ -204,7 +223,7 @@ public class MainActivity extends Activity {
 
             if(firsVisibleItem + visibleItemCount ==  totalItemCount && totalItemCount != 0 )
             {
-                if(!mLoadingFlag) 
+                if(!mLoadingFlag && bMoreAvailableFlag) 
                 {
                 	getItemSearch(mSearchIDString, mImageList.get(mImageList.size()-1).getId().toString() );
                 }
@@ -216,15 +235,20 @@ public class MainActivity extends Activity {
     };
     
     private void hideKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    	try {
+    		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        
     }
 
     private void showToastMake(CharSequence message) {
         try {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            ;
+            
         }
     }
     
@@ -235,6 +259,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
 
+    	if(mImageList !=null)
+    		mImageList.clear();
+    	
+		if(mListAdapter != null)
+			mListAdapter.setClearCache();
+		
+		hideKeyboard();
         super.onDestroy();
     }
 

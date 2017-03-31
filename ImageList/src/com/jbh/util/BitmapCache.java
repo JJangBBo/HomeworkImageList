@@ -176,8 +176,8 @@ public class BitmapCache {
 
 	private Bitmap scaleBitmap(Bitmap src, int w, int h) {
 		BitmapFactory.Options opt = new BitmapFactory.Options();
-		opt.inDither = true; // �̹����� ����ϰ� ó���ؼ� �����ִ� �ɼ�
-		opt.inPurgeable = true;// �޸𸮸� �ٿ��ִ� �ɼ�
+		opt.inDither = true; // 
+		opt.inPurgeable = true;// 
 		opt.inSampleSize = 1;
 
 		byte[] byteimg = BitmapToByteArray(src);
@@ -198,10 +198,5 @@ public class BitmapCache {
 
 	}
 
-	// ByteArray - > Bitmap
-	private Bitmap DrawBarcode(byte[] data) {
 
-		return BitmapFactory.decodeByteArray(data, 0, data.length);
-
-	}
 }

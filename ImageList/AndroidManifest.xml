@@ -8,7 +8,7 @@
         android:targetSdkVersion="10" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -26,6 +26,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jbh.view.ImageDetailActivity"
+            android:clearTaskOnLaunch="false"
+            android:configChanges="orientation|keyboardHidden|locale|fontScale"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
     </application>
 

@@ -12,6 +12,22 @@ public class MemoryCache {
  
     private static final String TAG = "MemoryCache";
      
+    
+    private static volatile MemoryCache instance = null;
+
+    
+
+    public static MemoryCache getInstance() {
+        if (instance == null) {
+            synchronized(MemoryCache.class) {
+                if (instance == null) {
+                    instance = new MemoryCache();
+                }
+            }
+        }
+        return instance;
+    }
+    
     //Last argument true for LRU ordering
     private Map<String, Bitmap> cache = Collections.synchronizedMap(
             new LinkedHashMap<String, Bitmap>(10,1.5f,true));
