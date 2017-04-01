@@ -2,8 +2,8 @@
 The homework to show my ability
 <hr>
 
-1. Name : Jang Bo Hun<br>
-2. Development environment :<br>
+1. 이름 : 장보훈 <br>
+2. :<br>
    Computer OS -> window 7.
    <br>   
    IDE -> Eclipse.
