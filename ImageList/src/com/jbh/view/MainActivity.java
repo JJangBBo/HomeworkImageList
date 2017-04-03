@@ -197,20 +197,16 @@ public class MainActivity extends Activity {
     
     
     
-    /**
-     * 리스트뷰 바인딩 메서드
-     * 
-     * @param result
-     *            서버에서 넘어온 데이터
-     */
-    private void showListView() {
-//    	mImageList = result.getItemsList();
+    private void showListView()
+    {
+    	
     	if(mListAdapter != null)
     	{
     		mListAdapter.setAppendList(mImageList);
     		mListAdapter.notifyDataSetChanged();
     	}
     }
+    
     
     private AbsListView.OnScrollListener mOnScrollListener = new AbsListView.OnScrollListener() {
         @Override
@@ -233,6 +229,7 @@ public class MainActivity extends Activity {
             }
         }
     };
+    
     
     private void hideKeyboard() {
     	try {

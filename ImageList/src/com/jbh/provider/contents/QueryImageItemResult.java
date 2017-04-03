@@ -5,11 +5,17 @@ import java.util.List;
 
 //{"items": [], "more_available": false, "status": "ok"}
 
+/**
+ * @author 장보훈
+ * @file QueryImageItemResult.java
+ * @brief api 통신 내용중 기본 골자가 되는 부분의 item 정의 클래스
+ */
+
 public class QueryImageItemResult {
 	
-	public static final String TAG_STATUS     = "status";   //상점시퀀스
-	public static final String TAG_MOREAVAILABLE      = "more_available";    //상점모ID
-	public static final String TAG_ITEMS     = "items";      
+	public static final String TAG_STATUS     = "status";   // API 응답 상태
+	public static final String TAG_MOREAVAILABLE      = "more_available";    // API 추가 로딩 가능 여부
+	public static final String TAG_ITEMS     = "items";      // API 응답 내용중 item에 해당
 	      
 
 	

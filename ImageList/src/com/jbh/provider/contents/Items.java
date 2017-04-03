@@ -3,6 +3,11 @@ package com.jbh.provider.contents;
 import java.io.Serializable;
 
 
+/**
+ * @author 장보훈
+ * @file Items.java
+ * @brief api 통신 내용중 image 정보를 담고 있는 부분에 대한 정의 클래스 
+ */
 
 public class Items implements Serializable{
 	

@@ -25,7 +25,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
-
+/**
+ * @author 장보훈
+ * @file ImageDetailActivity.java
+ * @brief 상세 페이지 
+ */
 public class ImageDetailActivity extends Activity { 
 	
 	
@@ -37,10 +41,13 @@ public class ImageDetailActivity extends Activity {
     /** 검색할 아이디를 저장하는 스트링 */
     String mSearchIDString ="";
     
-    ViewPager mPager;					//뷰 페이저
+    /** 뷰 페이저 */
+    ViewPager mPager;
     
+    /** 뷰 페이저 어댑터  */
     PagerAdapterClass pagerAdapter;
     
+    /** 뷰 페이저 어댑터  */
     ImageLoader imageLoader= null;
     
     ArrayList<Items> mResourceMap= null;

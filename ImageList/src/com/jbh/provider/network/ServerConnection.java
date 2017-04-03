@@ -6,6 +6,11 @@ import java.io.IOException;
 import com.jbh.provider.contents.QueryImageItemResult;
 import com.jbh.util.Logger;
 
+/**
+ * @author 장보훈
+ * @file ServerConnection.java
+ * @brief 서버 통신과 응답값에 대한 정의
+ */
 
 public class ServerConnection {
     static ServerConnection _ServerConnection;

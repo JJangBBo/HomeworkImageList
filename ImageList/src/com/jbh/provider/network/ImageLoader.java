@@ -22,6 +22,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 
+
+
+
+/*
+ * LazyList 사용
+ * FileCache 부분을 제거 하여 사용
+ * http 통신후 bitmap 처리 부분 수정 하여 사용 
+ */
  
 public class ImageLoader {
      

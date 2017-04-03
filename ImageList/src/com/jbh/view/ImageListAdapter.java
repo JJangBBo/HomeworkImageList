@@ -14,8 +14,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+/**
+ * @author 장보훈
+ * @file ImageListAdapter.java
+ * @brief LIST View Adapter 
+ */
 
 public class ImageListAdapter extends ArrayAdapter<Items> {
+	
     private Context mContext = null;
     private List<Items> mResourceMap= null;
     LayoutInflater mInflater= null;

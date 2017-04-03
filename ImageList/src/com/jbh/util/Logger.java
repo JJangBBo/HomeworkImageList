@@ -3,6 +3,12 @@ package com.jbh.util;
 import android.util.Log;
 
 
+/**
+ * @author 장보훈
+ * @file Logger.java
+ * @brief 출력 로그 정리 
+ */
+
 public class Logger {
 
     	private static boolean CHECK_LOGGER = true;    //  LOGGER의 출력 여부를 설정 (LOGGER를 출력하지 않음  : false / LOGGER 출력 : true)

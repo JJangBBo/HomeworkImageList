@@ -11,6 +11,12 @@ import com.jbh.provider.contents.QueryImageItemResult;
 
 import java.io.IOException;
 
+/**
+ * @author 장보훈
+ * @file JsonParser.java
+ * @brief Json Pareser 이며 data 응답값에 대해 UI 에 활용할수 있도록 처리 하는 부분 
+ */
+
 public class JsonParser {
 
     static JsonParser jsonParser;

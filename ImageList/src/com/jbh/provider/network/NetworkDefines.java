@@ -1,10 +1,11 @@
 package com.jbh.provider.network;
 
 /**
- * @file CommonDefines.java
- * @brief 통신관련 공통 셋팅값
- * @author woorim kim
+ * @author 장보훈
+ * @file NetworkDefines.java
+ * @brief 서버 통신의 고정 적용값에 대한 정의 
  */
+
 
 public class NetworkDefines {
    

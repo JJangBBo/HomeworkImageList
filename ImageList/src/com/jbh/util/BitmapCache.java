@@ -11,6 +11,11 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 
+/**
+ * @author 장보훈
+ * @file BitmapCache.java
+ * @brief file Cache 부분을 app 권한 폴더에 생성하여 구축하려 했으나....
+ */
 
 public class BitmapCache {
 	Context mContext;

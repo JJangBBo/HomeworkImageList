@@ -28,12 +28,15 @@ import javax.net.ssl.X509TrustManager;
 import com.jbh.util.Logger;
 
 
+/**
+ * @author 장보훈
+ * @file HttpClient.java
+ * @brief http 통신을 위한 클래스 
+ */
 
 public class HttpClient {
 
-	/**
-     * @brief Constructor
-     */
+	
     public HttpClient() {
         super();
     }
@@ -120,8 +123,7 @@ public class HttpClient {
         Http = (HttpURLConnection)new URL(url).openConnection();
         Http.setRequestMethod(method);
         Http.setConnectTimeout(NetworkDefines.SERVER_CONNECT_TIMEOUT);
-        Http.setReadTimeout(NetworkDefines.SERVER_CONNECT_TIMEOUT * 3);
-        	
+        Http.setReadTimeout(NetworkDefines.SERVER_CONNECT_TIMEOUT * 3);       	
         Http.setDoInput(true);		
         Http.setRequestProperty("Accept", "application/json");
         
